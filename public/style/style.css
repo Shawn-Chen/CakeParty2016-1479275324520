@@ -141,15 +141,11 @@ tr:hover .deleteBtn {
 
 .leftHalf {
 	float: left;
-	background-color: #26343f;
-	width: 45%;
 	height: 100%;
 }
 
 .rightHalf {
 	float: right;
-	width: 55%;
-	background-color: #313f4a;
 	height: 100%;
 	overflow: auto;
 }
