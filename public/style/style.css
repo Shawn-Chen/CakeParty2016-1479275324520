@@ -25,3 +25,9 @@ header, footer {
 	border: 5px solid gray;
 	margin: 0;
 }
+
+.hide {
+   position: absolute;
+   top: 10000px;
+   left: 10000px;
+}
