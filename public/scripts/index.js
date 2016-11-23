@@ -11,6 +11,6 @@ $(function() {
  	$('#scorepage').toggle();
   });
   $("#btn-reset").click(function(){
-
+  	
   });
 });
