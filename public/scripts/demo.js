@@ -16,104 +16,61 @@
 
 /* global $:true */
 
-'use strict';
 
 // conversation variables
 var conversation_id, client_id;
 
 $(document).ready(function () {
-  var $chatInput = $('.chat-window--message-input'),
+  var $chat_blue = $('#label-blue'),
     $jsonPanel = $('#json-panel .base--textarea'),
     $information = $('.data--information'),
     $profile = $('.data--profile'),
     $loading = $('.loader'),
-    $micButton = $('#btn-blue');
+    $micButtonBlue = $('#btn-blue'),
+    $micButtonBlueFinish = $('#btn-blue-finish');
 
   // note: these tokens expire after an hour.
   var getSTTToken = $.ajax('/api/speech-to-text/token');
   var getTTSToken = $.ajax('/api/text-to-speech/token');
 
-  var deactivateMicButton = $micButton.removeClass.bind($micButton, 'active');
   function record() {
-    console.log('shawn');
     getSTTToken.then(function(token) {
-      $micButton.addClass('active');
-      WatsonSpeech.SpeechToText.recognizeMicrophone({
+      $micButtonBlue.addClass('disabled');
+      $micButtonBlueFinish.removeClass('disabled');
+      var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
         token: token,
-        continuous: false,
-        outputElement: $chatInput[0],
+        continuous: true,
+        outputElement: $chat_blue[0],
+        claer: true,
+        'X-WDC-PL-OPT-OUT': 1,
+        max_alternatives: 1,
         keepMicrophone: navigator.userAgent.indexOf('Firefox') > 0
-      }).promise().then(function() {
-        converse($chatInput.val());
-      }).then(deactivateMicButton)
-      .catch(deactivateMicButton);
+      });
+      stream.on('data', function(data) {
+        //console.log(data);
+      });
+      stream.on('error', function(err) {
+        console.log(err);
+      });
+      document.querySelector('#btn-blue-finish').onclick = function(){
+        //console.log(stream);
+        stream.stop();
+        $micButtonBlueFinish.addClass('disabled');
+        $micButtonBlue.removeClass('disabled');
+      };
     });
   }
-  $micButton.click(record);
+  function evaluate() {
+
+  }
+  $micButtonBlue.click(record);
+  //$micButtonBlueFinish.click(evaluate);
   //$micButton.toggle(record,deactivateMicButton,false);
 
   var converse = function(userText) {
-    $loading.show();
-    // $chatInput.hide();
-
-    // check if the user typed text or not
-    if (typeof(userText) !== undefined && $.trim(userText) !== '')
-      submitMessage(userText);
-
-    // build the conversation parameters
-    var params = { input : userText};
-
-    // check if there is a conversation in place and continue that
-    // by specifing the conversation_id and client_id
-    if (conversation_id) {
-      params.conversation_id = conversation_id;
-      params.client_id = client_id;
-    }
-
-    $.post('/conversation', params)
-      .done(function onSucess(dialog) {
-        $chatInput.val(''); // clear the text input
-
-        $jsonPanel.html(JSON.stringify(dialog.conversation, null, 2));
-
-        // update conversation variables
-        conversation_id = dialog.conversation.conversation_id;
-        client_id = dialog.conversation.client_id;
-
-        var texts = dialog.conversation.response;
-        var response = texts.join('&lt;br/&gt;'); // &lt;br/&gt; is <br/>
-
-        getTTSToken.then(function(token) {
-          WatsonSpeech.TextToSpeech.synthesize({
-            text: texts,
-            token: token
-          }).addEventListener('ended', record); // trigger the button again once TTS playback stops
-        });
-
-        $chatInput.show();
-        $chatInput[0].focus();
-
-        $information.empty();
-        console.log('Dialog ID: ', dialog.dialog_id);
-        addProperty($information, 'Dialog ID: ', dialog.dialog_id);
-        addProperty($information, 'Conversation ID: ', conversation_id);
-        addProperty($information, 'Client ID: ', client_id);
-
-        talk('WATSON', response); // show
-
-        getProfile();
-      })
-      .fail(function(error){
-        talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
-      })
-      .always(function always(){
-        $loading.hide();
-        scrollChatToBottom();
-        $chatInput.focus();
-      });
 
   };
-
+/*
   var getProfile = function() {
     var params = {
       conversation_id: conversation_id,
@@ -129,13 +86,6 @@ $(document).ready(function () {
     }).fail(function(error){
       talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
     });
-  };
-
-  var scrollChatToBottom = function() {
-    var element = $('.chat-box--pane');
-    element.animate({
-      scrollTop: element[0].scrollHeight
-    }, 420);
   };
 
   var talk = function(origin, text) {
@@ -164,7 +114,7 @@ $(document).ready(function () {
     scrollChatToBottom();
     clearInput();
   };
-
+*/
   var clearInput = function() {
     $('.chat-window--message-input').val('');
   };
@@ -182,7 +132,6 @@ $(document).ready(function () {
   });
 
   // Initialize the conversation
-  converse();
-  scrollToInput();
+  //converse();
 
 });

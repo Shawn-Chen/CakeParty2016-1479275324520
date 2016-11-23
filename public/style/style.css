@@ -40,10 +40,13 @@ header, footer {
 	display: none;
 	height: 100%;
 }
-
+ul {
+	list-style-type: none;
+	padding: 0;
+}
 p.question {
 	width: 90%;
-	font-size: 18px;
+	font-size: 25px;
 	padding: 10px;
 }
 
@@ -52,4 +55,8 @@ p.question {
 	height: 30%;
 	border-style: double;
 	border-color: black;
+}
+
+.label_text {
+	font-size: 24px;
 }

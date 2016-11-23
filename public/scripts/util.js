@@ -1,3 +1,6 @@
+'use strict';
+
+// For non-view logic
 //utilities
 function createXHR(){
 	if(typeof XMLHttpRequest != 'undefined'){
@@ -121,4 +124,3 @@ function objectToQuery(map){
 	}
 	return pairs.join("&");
 }
-

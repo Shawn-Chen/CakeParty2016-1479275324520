@@ -6,17 +6,15 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta charset="UTF-8">
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.js" integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA="
-  crossorigin="anonymous"></script>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://code.jquery.com/ui/1.12.0/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/watson-speech.min.js"></script>
+    <script type="text/javascript" src="/scripts/demo.js"></script>
+    <script type="text/javascript" src="/scripts/index.js"></script>
 
 </head>
 <body>
@@ -98,22 +96,26 @@
 		<div class='static layout_q1'>
 			<a name='posQ1'></a>
 			<h1>Q1: </h1>
-			<p class="question">IBM manufactures and sells computer hardware and software (with a focus on the latter), and offers infrastructure services, hosting services, and consulting services in areas ranging from mainframe computers to nanotechnology.</p>
+			<p class="question">IBM manufactures and sells computer hardware and software, and offers infrastructure services, hosting services, and consulting services in areas ranging from mainframe computers to nanotechnology.</p>
 			<div id="team-blue" class="team">
-                <a href="#" class="btn btn-info">
-              	<span id="btn-blue" class="glyphicon glyphicon-record"></span> Record
-            	</a>
-            	<a href="#" class="btn btn-primary disabled">
-              	<span class="glyphicon glyphicon-triangle-right"></span> Play
-            	</a>
-                <label> Match: </lable><label>0</lable><label>%</lable>
+                <ul >
+                    <li>
+                        <a id="btn-blue" href="#" class="btn btn-info">
+                        <span class="glyphicon glyphicon-record"></span> Record
+                        </a>
+                         <a id="btn-blue-finish" href="#" class="btn btn-info disabled">
+                        <span class="glyphicon glyphicon-hand-right"></span> Finish
+                        </a>
+                        <label> Match: </lable><label>0</lable><label>%</lable>                      
+                    </li>
+                    <li>
+                        <label id='label-blue' class='label_text'></label>
+                    </li>
+                </ul>
             </div>
             <div id="team-red" class="team">
-                <a href="#" class="btn btn-warning">
-                <span id="btn-red" class="glyphicon glyphicon-record nav-inverse-color"></span> Record
-                </a>
-                <a href="#" class="btn btn-danger disabled">
-                <span class="glyphicon glyphicon-triangle-right"></span> Play
+                <a id="btn-red" href="#" class="btn btn-warning">
+                <span class="glyphicon glyphicon-record nav-inverse-color"></span> Record
                 </a>
                 <label> Match: </lable><label>0</lable><label>%</lable>
             </div>
@@ -128,5 +130,6 @@
 	<script type="text/javascript" src="/scripts/index.js"></script>
     <script type="text/javascript" src="/scripts/watson-speech.min.js"></script>
     <script type="text/javascript" src="/scripts/demo.js"></script>
+    <script type="text/javascript" src="/scripts/css.js"></script>
 </body>
 </html>

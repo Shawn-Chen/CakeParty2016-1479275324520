@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-'use strict';
+
 
 require('dotenv').config({silent: true});
 
