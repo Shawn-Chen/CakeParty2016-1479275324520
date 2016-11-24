@@ -36,10 +36,12 @@ header, footer {
 	display: none;
 }
 
-.layout_q1 {
+.layout_q1, .layout_q2 {
 	display: none;
 	height: 100%;
 }
+
+
 ul {
 	list-style-type: none;
 	padding: 0;

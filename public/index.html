@@ -13,8 +13,10 @@
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/scripts/watson-speech.js"></script>
+    <script type="text/javascript" src="/scripts/mootools.js"></script>
+    <script type="text/javascript" src="/scripts/String.levenshtein.js"></script>
     <script type="text/javascript" src="/scripts/index.js"></script>
-    <script type="text/javascript" src="/scripts/demo.js"></script>
+    <script type="text/javascript" src="/scripts/demo1.js"></script>
     <script type="text/javascript" src="/scripts/util.js"></script>
     <script type="text/javascript" src="/scripts/css.js"></script>
 </head>
@@ -36,8 +38,8 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                <a class="thumbnail" href="#posQ2">
+                    <img class="img-responsive" src="/images/obesity.jpg" alt="obesity">
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -94,38 +96,88 @@
             <button id="btn-reset" type="submit" class="btn btn-default">Reset</button>
         </div>
        	</br>
-		<div class='static layout_q1'>
+		<div id='q1' class='static layout_q1'>
 			<a name='posQ1'></a>
 			<h1>Q1: </h1>
 			<p class="question">IBM manufactures and sells computer hardware and software, and offers infrastructure services, hosting services, and consulting services in areas ranging from mainframe computers to nanotechnology.</p>
-			<div id="team-blue" class="team">
-                <ul >
+			<div class="team">
+                <ul>
                     <li>
-                        <a id="btn-blue" href="#" class="btn btn-info">
+                        <a href="#" class="btn-blue btn btn-info">
                         <span class="glyphicon glyphicon-record"></span> Record
                         </a>
-                         <a id="btn-blue-finish" href="#" class="btn btn-info disabled">
+                         <a href="#" class="btn-blue-finish btn btn-info disabled">
                         <span class="glyphicon glyphicon-hand-right"></span> Finish
                         </a>
-                        <label> Match: </lable><label>0</lable><label>%</lable>                      
+                        <label> Match: </lable><label class="blue-percentage">0</lable><label>%</lable>                      
                     </li>
                     <li>
-                        <label id='label-blue' class='label_text'></label>
+                        <label class='label-blue label_text'></label>
                     </li>
                 </ul>
             </div>
-            <div id="team-red" class="team">
-                <a id="btn-red" href="#" class="btn btn-warning">
-                <span class="glyphicon glyphicon-record nav-inverse-color"></span> Record
-                </a>
-                <label> Match: </lable><label>0</lable><label>%</lable>
+            <div class="team">
+                <ul>
+                    <li>
+                        <a href="#" class="btn-red btn btn-warning">
+                        <span class="glyphicon glyphicon-record nav-inverse-color"></span> Record
+                        </a>
+                        <a href="#" class="btn-red-finish btn btn-warning disabled">
+                        <span class="glyphicon glyphicon-hand-right"></span> Finish
+                        </a>
+                        <label> Match: </lable><label class="red-percentage">0</lable> <label>%</lable>
+                    </li>
+                    <li>
+                        <label class='label-red label_text'></label>
+                    </li>
+                </ul>
             </div>
         	</br></br></br>
             <a href="#top" class="btn ">
             <span class="glyphicon glyphicon-ok btn-lg"></span> RETURN
-            </a>
-            
+            </a>      
 		</div>
+        <div id='q2' class='static layout_q2'>
+            <a name='posQ2'></a>
+            <h1>Q2: </h1>
+            <p class="question">Children in Europe are bombarded with hidden digital advertising and marketing promoting fatty, sugary and salty foods, which are damaging their health and adding to the region’s obesity problem.</p>
+            <div class="team">
+                <ul>
+                    <li>
+                        <a href="#" class="btn-blue btn btn-info">
+                        <span class="glyphicon glyphicon-record"></span> Record
+                        </a>
+                         <a href="#" class="btn-blue-finish btn btn-info disabled">
+                        <span class="glyphicon glyphicon-hand-right"></span> Finish
+                        </a>
+                        <label> Match: </lable><label class="blue-percentage">0</lable><label>%</lable>                      
+                    </li>
+                    <li>
+                        <label class='label-blue label_text'></label>
+                    </li>
+                </ul>
+            </div>
+            <div class="team">
+                <ul>
+                    <li>
+                        <a href="#" class="btn-red btn btn-warning">
+                        <span class="glyphicon glyphicon-record nav-inverse-color"></span> Record
+                        </a>
+                        <a href="#" class="btn-red-finish btn btn-warning disabled">
+                        <span class="glyphicon glyphicon-hand-right"></span> Finish
+                        </a>
+                        <label> Match: </lable><label class="red-percentage">0</lable> <label>%</lable>
+                    </li>
+                    <li>
+                        <label class='label-red label_text'></label>
+                    </li>
+                </ul>
+            </div>
+            </br></br></br>
+            <a href="#top" class="btn ">
+            <span class="glyphicon glyphicon-ok btn-lg"></span> RETURN
+            </a>      
+        </div>
     </div>
 </body>
 </html>
