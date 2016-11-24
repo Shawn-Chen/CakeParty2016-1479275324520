@@ -28,6 +28,16 @@ header, footer {
 	margin: 0;
 }
 
+p#bluescore{
+	color: blue;
+	font-size: 30px;
+}
+
+p#redscore{
+	color: red;
+	font-size: 30px;
+}
+
 .static {
 	position: absolute;
 }
@@ -36,7 +46,7 @@ header, footer {
 	display: none;
 }
 
-.layout_q1, .layout_q2 {
+.layout_q1, .layout_q2, .layout_q3, .layout_q4, .layout_q5, .layout_q6, .layout_q7, .layout_q8, .layout_q9, .layout_q10, .layout_q11, .layout_q12{
 	display: none;
 	height: 100%;
 }
@@ -61,4 +71,8 @@ p.question {
 
 .label_text {
 	font-size: 24px;
+}
+
+.glyphicon.glyphicon-play-circle {
+    font-size: 30px;
 }

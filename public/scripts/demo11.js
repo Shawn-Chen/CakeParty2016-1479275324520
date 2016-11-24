@@ -18,16 +18,16 @@
 
 
 $(document).ready(function () {
-  var $chat_blue = $('#q2 .label-blue'),
-    $chat_red = $('#q2 .label-red'),
-    $question = $('#q2 p.question'),
-    $blue_percentage = $('#q2 .blue-percentage'),
-    $red_percentage = $('#q2 .red-percentage'),
-    $play_btn = $('#q2 .glyphicon-play-circle'),
-    $micButtonBlue = $('#q2 .btn-blue'),
-    $micButtonBlueFinish = $('#q2 .btn-blue-finish'),
-    $micButtonRed = $('#q2 .btn-red'),
-    $micButtonRedFinish = $('#q2 .btn-red-finish');
+  var $chat_blue = $('#q11 .label-blue'),
+    $chat_red = $('#q11 .label-red'),
+    $question = $('#q11 p.question'),
+    $blue_percentage = $('#q11 .blue-percentage'),
+    $red_percentage = $('#q11 .red-percentage'),
+    $play_btn = $('#q11 .glyphicon-play-circle'),
+    $micButtonBlue = $('#q11 .btn-blue'),
+    $micButtonBlueFinish = $('#q11 .btn-blue-finish'),
+    $micButtonRed = $('#q11 .btn-red'),
+    $micButtonRedFinish = $('#q11 .btn-red-finish');
 
   // note: these tokens expire after an hour.
   var getSTTToken = $.ajax('/api/speech-to-text/token');
@@ -36,6 +36,7 @@ $(document).ready(function () {
   function play() {
     getTTSToken.then(function(token) {
       WatsonSpeech.TextToSpeech.synthesize({
+        voice: 'ja-JP_EmiVoice',
         text: $question.html(),
         token: token,
       });
@@ -47,6 +48,7 @@ $(document).ready(function () {
       $micButtonBlue.addClass('disabled');
       $micButtonBlueFinish.removeClass('disabled');
       var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+        model: 'ja-JP_BroadbandModel',
         token: token,
         continuous: true,
         outputElement: $chat_blue[0],
@@ -61,7 +63,7 @@ $(document).ready(function () {
       stream.on('error', function(err) {
         console.log(err);
       });
-      document.querySelector('#q2 .btn-blue-finish').onclick = function(){
+      document.querySelector('#q11 .btn-blue-finish').onclick = function(){
         //console.log(stream);
         stream.stop();
         $micButtonBlueFinish.addClass('disabled');
@@ -77,6 +79,7 @@ $(document).ready(function () {
       $micButtonRed.addClass('disabled');
       $micButtonRedFinish.removeClass('disabled');
       var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+        model: 'ja-JP_BroadbandModel',
         token: token,
         continuous: true,
         outputElement: $chat_red[0],
@@ -91,7 +94,7 @@ $(document).ready(function () {
       stream.on('error', function(err) {
         console.log(err);
       });
-      document.querySelector('#q2 .btn-red-finish').onclick = function(){
+      document.querySelector('#q11 .btn-red-finish').onclick = function(){
         //console.log(stream);
         stream.stop();
         $micButtonRedFinish.addClass('disabled');

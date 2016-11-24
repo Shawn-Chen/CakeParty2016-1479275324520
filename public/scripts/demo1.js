@@ -23,6 +23,7 @@ $(document).ready(function () {
     $question = $('#q1 p.question'),
     $blue_percentage = $('#q1 .blue-percentage'),
     $red_percentage = $('#q1 .red-percentage'),
+    $play_btn = $('#q1 .glyphicon-play-circle'),
     $micButtonBlue = $('#q1 .btn-blue'),
     $micButtonBlueFinish = $('#q1 .btn-blue-finish'),
     $micButtonRed = $('#q1 .btn-red'),
@@ -31,6 +32,15 @@ $(document).ready(function () {
   // note: these tokens expire after an hour.
   var getSTTToken = $.ajax('/api/speech-to-text/token');
   var getTTSToken = $.ajax('/api/text-to-speech/token');
+
+  function play() {
+    getTTSToken.then(function(token) {
+      WatsonSpeech.TextToSpeech.synthesize({
+        text: $question.html(),
+        token: token,
+      });
+    });
+  }
 
   function record_blue() {
     getSTTToken.then(function(token) {
@@ -62,6 +72,7 @@ $(document).ready(function () {
       };
     });
   }
+
   function record_red() {
     getSTTToken.then(function(token) {
       $micButtonRed.addClass('disabled');
@@ -92,6 +103,8 @@ $(document).ready(function () {
       };
     });
   }
+
+  $play_btn.click(play);
   $micButtonBlue.click(record_blue);
   $micButtonRed.click(record_red);
 

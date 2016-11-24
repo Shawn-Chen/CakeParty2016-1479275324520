@@ -18,16 +18,16 @@
 
 
 $(document).ready(function () {
-  var $chat_blue = $('#q2 .label-blue'),
-    $chat_red = $('#q2 .label-red'),
-    $question = $('#q2 p.question'),
-    $blue_percentage = $('#q2 .blue-percentage'),
-    $red_percentage = $('#q2 .red-percentage'),
-    $play_btn = $('#q2 .glyphicon-play-circle'),
-    $micButtonBlue = $('#q2 .btn-blue'),
-    $micButtonBlueFinish = $('#q2 .btn-blue-finish'),
-    $micButtonRed = $('#q2 .btn-red'),
-    $micButtonRedFinish = $('#q2 .btn-red-finish');
+  var $chat_blue = $('#q10 .label-blue'),
+    $chat_red = $('#q10 .label-red'),
+    $question = $('#q10 p.question'),
+    $blue_percentage = $('#q10 .blue-percentage'),
+    $red_percentage = $('#q10 .red-percentage'),
+    $play_btn = $('#q10 .glyphicon-play-circle'),
+    $micButtonBlue = $('#q10 .btn-blue'),
+    $micButtonBlueFinish = $('#q10 .btn-blue-finish'),
+    $micButtonRed = $('#q10 .btn-red'),
+    $micButtonRedFinish = $('#q10 .btn-red-finish');
 
   // note: these tokens expire after an hour.
   var getSTTToken = $.ajax('/api/speech-to-text/token');
@@ -47,6 +47,7 @@ $(document).ready(function () {
       $micButtonBlue.addClass('disabled');
       $micButtonBlueFinish.removeClass('disabled');
       var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+        model: 'zh-CN_BroadbandModel',
         token: token,
         continuous: true,
         outputElement: $chat_blue[0],
@@ -61,7 +62,7 @@ $(document).ready(function () {
       stream.on('error', function(err) {
         console.log(err);
       });
-      document.querySelector('#q2 .btn-blue-finish').onclick = function(){
+      document.querySelector('#q10 .btn-blue-finish').onclick = function(){
         //console.log(stream);
         stream.stop();
         $micButtonBlueFinish.addClass('disabled');
@@ -77,6 +78,7 @@ $(document).ready(function () {
       $micButtonRed.addClass('disabled');
       $micButtonRedFinish.removeClass('disabled');
       var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+        model: 'zh-CN_BroadbandModel',
         token: token,
         continuous: true,
         outputElement: $chat_red[0],
@@ -91,7 +93,7 @@ $(document).ready(function () {
       stream.on('error', function(err) {
         console.log(err);
       });
-      document.querySelector('#q2 .btn-red-finish').onclick = function(){
+      document.querySelector('#q10 .btn-red-finish').onclick = function(){
         //console.log(stream);
         stream.stop();
         $micButtonRedFinish.addClass('disabled');
@@ -104,6 +106,6 @@ $(document).ready(function () {
   }
   $micButtonBlue.click(record_blue);
   $micButtonRed.click(record_red);
-  $play_btn.click(play);
+  //$play_btn.click(play);
 
 });
