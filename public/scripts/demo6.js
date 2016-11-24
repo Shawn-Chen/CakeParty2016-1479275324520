@@ -104,6 +104,6 @@ $(document).ready(function () {
   }
   $micButtonBlue.click(record_blue);
   $micButtonRed.click(record_red);
-  //$play_btn.click(play);
+  $play_btn.click(play);
 
 });
